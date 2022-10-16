@@ -88,8 +88,8 @@ services:
 
   # Other services
   mqtt:
-  # docker run -it --rm --name mqtt-subscriber --network influx efrecon/mqtt-client sub -h mqtt -t "/#"
-  # docker run -it --rm --name mqtt-publisher --network influx efrecon/mqtt-client pub -h mqtt -m "Hi!" -t "/test"
+  # docker run -it --rm --name mqtt-subscriber --network influx-frontend efrecon/mqtt-client sub -h mqtt -t "ngsi/#"
+  # docker run -it --rm --name mqtt-publisher --network influx-frontend efrecon/mqtt-client pub -h mqtt -m '{"@context":"http://example.org","id":"urn:abc","temperature":23,"humidity":45.6}' -t "ngsi/ld"
     container_name: dsig-mosquitto
     image: eclipse-mosquitto #:1.6.15
     networks:
