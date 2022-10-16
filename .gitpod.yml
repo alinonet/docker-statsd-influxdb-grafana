@@ -1,0 +1,5 @@
+tasks:
+  - init: COMPOSE_PROFILES=grafana,telegraf docker-compose pull
+    command: |
+      COMPOSE_PROFILES=grafana,telegraf docker-compose up -d
+      COMPOSE_PROFILES=grafana,telegraf docker-compose logs -f

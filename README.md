@@ -1,4 +1,4 @@
-# Docker service with Telegraf (StatsD), InfluxDB and Grafana
+# Docker service with Telegraf (HTTP, MQTT, StatsD), InfluxDB and Grafana
 
 :facepunch: Battle-tested
 
@@ -38,18 +38,20 @@ COMPOSE_PROFILES=grafana,telegraf docker-compose down
 ```
 Host		Container		Service
 
-3003		3003			grafana
-8086		8086		  influxdb
-8125		8125			statsd
+1883        1883            mqtt
+3000		3000		    grafana
+8080        8080            http
+8086		8086            influxdb
+8125		8125            statsd
 ```
 
 ## Grafana
 
-Open <http://localhost:3003>
+Open <http://localhost:3000>
 
 ```
-Username: root
-Password: root
+Username: admin
+Password: admin
 ```
 
 ### Data source on Grafana
@@ -65,7 +67,6 @@ Open <http://localhost:8086>
 ```
 Username: admin
 Password: admin123456
-Port: 8086
 ```
 
 ## Customizations

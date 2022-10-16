@@ -85,3 +85,25 @@ services:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/dashboards:/etc/dashboards
+
+  # Other services
+  mqtt:
+  # docker run -it --rm --name mqtt-subscriber --network influx efrecon/mqtt-client sub -h mqtt -t "/#"
+  # docker run -it --rm --name mqtt-publisher --network influx efrecon/mqtt-client pub -h mqtt -m "Hi!" -t "/test"
+    container_name: dsig-mosquitto
+    image: eclipse-mosquitto #:1.6.15
+    networks:
+      - influx
+    expose:
+      - "1883"
+      - "9001"
+    ports:
+      - "1883:1883" # localhost:1883
+      - "9001:9001" # localhost:9001
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    healthcheck:
+      test: ["CMD-SHELL", "curl", "-f", "http://localhost:1883" ]
+      interval: 10s
+      timeout: 10s
+      retries: 6
