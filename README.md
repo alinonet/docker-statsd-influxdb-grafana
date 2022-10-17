@@ -36,7 +36,7 @@ COMPOSE_PROFILES=grafana,telegraf docker-compose down
 ## Mapped Ports
 
 ```
-Host    Container	  Service
+Host    Container   Service
 
 1883      1883      mqtt
 3000      3000      grafana
